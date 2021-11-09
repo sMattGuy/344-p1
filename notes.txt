@@ -1,0 +1,42 @@
+threads
+	voter
+		20 voters
+	ID_Checker
+		3 checkers
+	kiosk_helper
+		1 helper per kiosk
+		3 kiosks
+	scanning_helper
+		2 helpers
+	
+monitors
+	ID_Check
+	kiosk 
+	scan machine
+	
+flow
+
+-- START --
+voter gets on line
+voter waits 
+id checker notifies next voter in line
+voter id is checked (sleep)
+-- CHECKPOINT --
+voter enters shortest kiosk line
+voter waits in line
+kiosk helper notifies voter
+voter begins voting (sleep)
+voter tells kiosk helper they are done
+-- CHECKPOINT --
+voters gather in groups (all must be present before continuing)
+scan helper brings voters to the machines
+3/4 of voters will need help rand() <= .75 and notify the scan helper and waits to be helped
+voter leaves (terminates)
+-- END --
+
+each step
+-- START --
+	initialize all threads
+	voters wait in a vector using objects to implement first come first serve
+	something like enterLine(); which will run like startRead() in rwcv.java
+	
