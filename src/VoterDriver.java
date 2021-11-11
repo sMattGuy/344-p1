@@ -1,11 +1,11 @@
 public class VoterDriver{
 	public static void main(String args[]){
-		int numVoters = 20;
+		int numVoters = 10;
 		int numIDHelpers = 3;
 		
 		ID_Check id_check = new ID_Check(numVoters);
 		
-		Stalker stalker = new Stalker(id_check);
+		//Stalker stalker = new Stalker(id_check);
 		
 		//create ID helpers
 		for(int i=0;i<numIDHelpers;i++){

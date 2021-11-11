@@ -19,8 +19,10 @@ class Voter implements Runnable{
 		try{
 			line.enterLine(this.name);
 			this.wasteTime(1000);
+			System.out.println(line);
 			line.exitLine(this.name);
 			System.out.println("Goodbye " + this.name + "! See you next time.");
+			System.out.println(line);
 		}
 		catch(InterruptedException e){
 			System.out.println(e);

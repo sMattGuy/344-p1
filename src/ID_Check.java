@@ -5,6 +5,8 @@ class ID_Check{
 	private int numVoters = 0;
 	
 	private Vector<Object> waitingVoters = new Vector<>();
+	
+	private Vector<Object> waitingHelpers = new Vector<>();
 	private Vector<Object> busyHelpers = new Vector<>();
 	
 	//constructor for monitor
@@ -20,9 +22,9 @@ class ID_Check{
 			System.out.println(name + " is entering the line");
 			//voter enters line
 			waitingVoters.addElement(convey);
-			System.out.println(this);
 			while(true){
 				try{
+					alertHelpers();
 					convey.wait();
 					break;
 				}
@@ -38,20 +40,14 @@ class ID_Check{
 	public void exitLine(String name){
 		System.out.println(name + " is moving to the kiosk");
 		this.numVoters--;
-		synchronized(busyHelpers.elementAt(0)){
-			busyHelpers.elementAt(0).notify();
-		}
-		busyHelpers.removeElementAt(0);
+		alertBusyHelper();
 	}
 	
-	public synchronized void startHelping(String name){
+	public void startHelping(String name){
 		if(!waitingVoters.isEmpty()){
-			System.out.println(name + " is helping a voter");
+			//System.out.println(name + " is helping a voter");
 			//assist voter
-			synchronized(waitingVoters.elementAt(0)){
-				waitingVoters.elementAt(0).notify();
-			}
-			waitingVoters.removeElementAt(0);
+			alertVoters();
 			//wait for voter to end
 			Object convey = new Object();
 			synchronized(convey){
@@ -67,6 +63,48 @@ class ID_Check{
 				}
 			}
 		}
+		else if(numVoters > 3 && waitingVoters.isEmpty()){
+			//no one to help, wait
+			System.out.println(name + " is waiting for voters");
+			Object convey = new Object();
+			synchronized(convey){
+				waitingHelpers.addElement(convey);
+				while(true){
+					try{
+						convey.wait();
+						break;
+					}
+					catch(InterruptedException e){
+						continue;
+					}
+				}
+			}
+		}
+	}
+	
+	private synchronized void alertBusyHelper(){
+		if(!busyHelpers.isEmpty()){
+			synchronized(busyHelpers.elementAt(0)){
+				busyHelpers.elementAt(0).notify();
+				busyHelpers.removeElementAt(0);
+			}
+		}
+	}
+	private synchronized void alertVoters(){
+		if(!waitingVoters.isEmpty()){
+			synchronized(waitingVoters.elementAt(0)){
+				waitingVoters.elementAt(0).notify();
+				waitingVoters.removeElementAt(0);
+			}
+		}
+	}
+	private synchronized void alertHelpers(){
+		if(!waitingHelpers.isEmpty()){
+			synchronized(waitingHelpers.elementAt(0)){
+				waitingHelpers.elementAt(0).notify();
+			}
+			waitingHelpers.removeElementAt(0);
+		}
 	}
 	
 	//use this to determine if all voters are done in line, then helpers can terminate
@@ -75,6 +113,6 @@ class ID_Check{
 	}
 	
 	public String toString(){
-		return "Remaining voters:"+this.numVoters+" Current Voter Line:"+this.waitingVoters.size()+" Current Busy Helpers:"+this.busyHelpers.size();
+		return "Remaining voters:"+this.numVoters+" Current Voter Line:"+this.waitingVoters.size()+" Current Busy Helpers:"+this.busyHelpers.size()+" Current Waiting Helpers:"+waitingHelpers.size();
 	}
 }
