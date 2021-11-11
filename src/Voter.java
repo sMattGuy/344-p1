@@ -1,28 +1,33 @@
 import java.util.Vector;
-import Utilities.*;
+import java.util.concurrent.TimeUnit;
 
 class Voter implements Runnable{
 	//local variables
 	private String name;
-	private Line line;
+	private ID_Check line;
+	/*
 	private Kiosk kiosk;
 	private ScanMachine scanMachine;
-	
-	public Voter(String name){
+	*/
+	public Voter(String name, ID_Check line){
 		this.name = name;
-	}
-	
-	public void setLine(Line line){
 		this.line = line;
-	}
-	public void setKiosk(Kiosk kiosk){
-		this.kiosk = kiosk;
-	}
-	public void setScanMachine(ScanMachine scanMachine){
-		this.scanMachine = scanMachine;
+		new Thread(this).start();
 	}
 	
 	public void run(){
-		
+		try{
+			line.enterLine(this.name);
+			this.wasteTime(1000);
+			line.exitLine(this.name);
+			System.out.println("Goodbye " + this.name + "! See you next time.");
+		}
+		catch(InterruptedException e){
+			System.out.println(e);
+		}
+	}
+	
+	private void wasteTime(int time) throws InterruptedException{
+		TimeUnit.MILLISECONDS.sleep(time);
 	}
 }

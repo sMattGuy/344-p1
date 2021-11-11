@@ -4,45 +4,64 @@ class ID_Check{
 	//this is set to the number of voters we will process, once it is 0, the helpers can exit
 	private int numVoters = 0;
 	
-	private Vector<Voter> waitingVoters = new Vector<>();
-	private Vector<ID_Checker> waitingHelpers = new Vector<>();
+	private Vector<Object> waitingVoters = new Vector<>();
+	private Vector<Object> busyHelpers = new Vector<>();
 	
 	//constructor for monitor
 	public ID_Check(int numVoters){
 		this.numVoters = numVoters;
 	}
-	//service methods
+	
+	//service methods for voter
 	public void enterLine(String name){
-		//similar setup to rwcv
+		//object that thread will wait on
 		Object convey = new Object();
 		synchronized(convey){
-			//add voter object to wait line
-			waitingVoters.add(convey);
+			System.out.println(name + " is entering the line");
+			//voter enters line
+			waitingVoters.addElement(convey);
+			System.out.println(this);
 			while(true){
-				//while loop to cover race condition covered in textbook
 				try{
 					convey.wait();
 					break;
-				}catch(InterruptedException e){
+				}
+				catch(InterruptedException e){
 					continue;
 				}
 			}
 		}
-		//once exits the voter can sleep to simulate checking id
+		System.out.println(name + " is exiting the line");
+		//voter exits, sleeps, and calls exitLine
 	}
 	
-	public void startHelping(String name){
-		Object convey = new Object();
-		//this is where the waiting helpers will enter, helpers will first check if the voter line is empty, if it isnt then they will help the first person in line, if it is they will wait in their queue. They will be notified by voters entering the line.
-		synchronized(convey){
-			if(waitingVoters.isEmpty()){
-				//no voters to help, the helpers will enter their waiting queue
+	public void exitLine(String name){
+		System.out.println(name + " is moving to the kiosk");
+		this.numVoters--;
+		synchronized(busyHelpers.elementAt(0)){
+			busyHelpers.elementAt(0).notify();
+		}
+		busyHelpers.removeElementAt(0);
+	}
+	
+	public synchronized void startHelping(String name){
+		if(!waitingVoters.isEmpty()){
+			System.out.println(name + " is helping a voter");
+			//assist voter
+			synchronized(waitingVoters.elementAt(0)){
+				waitingVoters.elementAt(0).notify();
+			}
+			waitingVoters.removeElementAt(0);
+			//wait for voter to end
+			Object convey = new Object();
+			synchronized(convey){
+				busyHelpers.addElement(convey);
 				while(true){
-					//while loop to cover race condition covered in textbook
 					try{
 						convey.wait();
 						break;
-					}catch(InterruptedException e){
+					}
+					catch(InterruptedException e){
 						continue;
 					}
 				}
@@ -50,22 +69,12 @@ class ID_Check{
 		}
 	}
 	
+	//use this to determine if all voters are done in line, then helpers can terminate
+	public int getRemainingVoters(){
+		return this.numVoters;
+	}
+	
 	public String toString(){
-		
+		return "Remaining voters:"+this.numVoters+" Current Voter Line:"+this.waitingVoters.size()+" Current Busy Helpers:"+this.busyHelpers.size();
 	}
 }
-
-/*
-	notes
-	ID_checkers are threads that unblock the voter threads
-	voters can just wait until a id checker notifies them
-	then the voter can sleep a bit to simulate checking id
-	
-	essentially a voter comes in and is put in the vector
-	when that vector is not empty 
-	
-	voter enters line, waits
-	id checker sees line is not empty -> notifies first voter -> id checker waits
-	voter sleeps -> notifies their id checker
-	voter can move on to next section, id checker can repeat checking the line if its not empty
-*/
