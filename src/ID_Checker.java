@@ -6,27 +6,34 @@ class ID_Checker implements Runnable{
 	private String name;
 	private ID_Check line;
 	
-	public ID_Checker(String name, ID_Check line){
+	public Tracker tracker;
+	
+	public ID_Checker(String name, ID_Check line, Tracker tracker){
 		this.name = name;
 		this.line = line;
+		this.tracker = tracker;
 		new Thread(this).start();
-	}
-	
-	public void setLine(ID_Check line){
-		this.line = line;
 	}
 	
 	public void run(){
 		try{
-			while(this.line.getRemainingVoters() != 0){
-				//loop until all voters are done
+			while(this.tracker.lineVotersRemaining != 0){
+				this.msg("Ready to help next voter");
 				line.startHelping(this.name);
+				this.msg("Helping a voter");
 				this.wasteTime(500);
 			}
+			this.msg("Done helping voters, leaving (exiting)");
 		}
 		catch(InterruptedException e){
 			System.out.println(e);
 		}
+	}
+	
+	public static long time = System.currentTimeMillis();
+	
+	public void msg(String m) {
+		System.out.println("["+(System.currentTimeMillis()-time)+"] "+this.name+": "+m);
 	}
 	
 	private void wasteTime(int time) throws InterruptedException{
