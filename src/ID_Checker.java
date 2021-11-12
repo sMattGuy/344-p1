@@ -1,5 +1,6 @@
 import java.util.Vector;
 import java.util.concurrent.TimeUnit;
+import java.util.Random;
 
 class ID_Checker implements Runnable{
 	//local variables
@@ -37,6 +38,7 @@ class ID_Checker implements Runnable{
 	}
 	
 	private void wasteTime(int time) throws InterruptedException{
-		TimeUnit.MILLISECONDS.sleep(time);
+		Random rand = new Random(System.currentTimeMillis());
+		TimeUnit.MILLISECONDS.sleep(rand.nextInt(time));
 	}
 }

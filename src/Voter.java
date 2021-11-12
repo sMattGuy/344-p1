@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.TimeUnit;
 
@@ -39,6 +40,7 @@ class Voter implements Runnable{
 	}
 	
 	private void wasteTime(int time) throws InterruptedException{
-		TimeUnit.MILLISECONDS.sleep(time);
+		Random rand = new Random(System.currentTimeMillis());
+		TimeUnit.MILLISECONDS.sleep(rand.nextInt(time));
 	}
 }
