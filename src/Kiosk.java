@@ -1,5 +1,14 @@
 import java.util.Vector;
 
+/*
+	plan:
+	each kiosk will run individually and have its own line
+	the voter can decide where it goes and stick to that monitor
+	then the kisosk will have its own thread to help the voters
+	once there are no voters left to help in line, the thread will terminate
+	a good idea would be to have a check for an active helper, that way if a voter enters late, and the 
+	kiosk helper thought it was done, it can re activate
+*/
 class Kiosk{
 	//name for the kiosk
 	private int kioskNum = 0;
@@ -8,7 +17,11 @@ class Kiosk{
 	//tracker to keep a number on how many voters are left
 	public Tracker tracker;
 	
+	//kiosk thread
+	private Object helperConvey = new Object();
+	private boolean busy = false;
 	private KioskHelper helper;
+	
 	//thread that is only for that kiosk
 	private class KioskHelper implements Runnable{
 		private String name;
@@ -21,8 +34,21 @@ class Kiosk{
 		
 		public void run(){
 			try{
+				//when first created it will wait until the first voter comes, then it will loop
+				synchronized(helperConvey){
+					while(true){
+						try{
+							helperConvey.wait();
+							break;
+						}
+						catch(InterruptedException e){
+							continue;
+						}
+					}
+				}
 				while(kiosk.tracker.kioskVotersRemaining != 0){
 					//loop helpers job until voters are all gone
+					
 				}
 			}
 			catch(InterruptedException e){
@@ -35,6 +61,7 @@ class Kiosk{
 		this.tracker = tracker;
 		helper = new KioskHelper("KioskHelper_"+kioskNum);
 	}
+	
 	//essentially same code as in ID_Check, except that there will only ever be one helper per kiosk
 	//service methods for voter
 	public void enterLine(String name){
@@ -122,5 +149,9 @@ class Kiosk{
 			}
 			waitingHelpers.removeElementAt(0);
 		}
+	}
+	
+	public synchronized int lineSize(){
+		return waitingVoters.size();
 	}
 }
