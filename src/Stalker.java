@@ -19,7 +19,7 @@ class Stalker implements Runnable{
 	
 	public void run(){
 		try{
-			while(this.tracker.lineVotersRemaining != 0){
+			while(true){
 				//System.out.println(line);
 				for(int i=0;i<3;i++){
 					System.out.println(kiosks.elementAt(i));

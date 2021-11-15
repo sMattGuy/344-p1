@@ -25,17 +25,20 @@ class Voter implements Runnable{
 	public void run(){
 		try{
 			//id section
-			this.wasteTime(1000,2000);
-			this.msg("Entering the ID line");
-			line.enterLine(this.name);
-			this.msg("Getting ID checked");
-			this.wasteTime(2000,5000);
-			line.exitLine(this.name);
+			this.wasteTime(1000,2000);				//delay when starting
+			this.msg("Entering the ID line");	
+			line.enterLine(this.name);				//enter line and wait
+			this.msg("Getting ID checked");		//id check notified voter, 
+			this.wasteTime(2000,5000);				//time taken to finish getting id checked
+			line.exitLine(this.name);				//exit line, update tracker and notify helper
 			
 			//kiosk section
-			this.msg("Moving on to Kiosk");
-			this.wasteTime(1000,3000);
+			this.msg("Moving on to Kiosk");		
+			this.wasteTime(1000,3000);				//delay when entering kiosk
 			this.msg("Looking for shortest kiosk line");
+			/*
+				checks the status of every kiosk and picks the shortest line
+			*/
 			int chosenKiosk = 0;
 			for(int i=0;i<kiosks.size();i++){
 				if(kiosks.elementAt(i).lineSize() < kiosks.elementAt(chosenKiosk).lineSize()){
@@ -43,9 +46,9 @@ class Voter implements Runnable{
 				}
 			}
 			this.msg("Selected kiosk "+chosenKiosk);
-			kiosks.elementAt(chosenKiosk).enterLine(this.name);
-			this.wasteTime(2000,5000);
-			kiosks.elementAt(chosenKiosk).exitLine(this.name);
+			kiosks.elementAt(chosenKiosk).enterLine(this.name);	//voter enters line for specific kiosk
+			this.wasteTime(2000,5000);										//time spent voting at kiosk
+			kiosks.elementAt(chosenKiosk).exitLine(this.name);		//exit and alert helper that theyre done
 			
 			this.msg("Moving on to Scan Machine");
 			this.msg("Done, leaving the voting area (exiting)");

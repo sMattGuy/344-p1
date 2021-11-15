@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 	plan:
 	each kiosk will run individually and have its own line
 	the voter can decide where it goes and stick to that monitor
-	then the kisosk will have its own thread to help the voters
+	then the kiosk will have its own thread to help the voters
 	once there are no voters left to help in line, the thread will terminate
 	a good idea would be to have a check for an active helper, that way if a voter enters late, and the 
 	kiosk helper thought it was done, it can re activate
@@ -41,8 +41,9 @@ class Kiosk{
 					//loop helpers job until voters are all gone
 					kiosk.startHelping(this.name);
 					this.msg("Waiting for voter to finish at kiosk");
-					this.wasteTime(500);
+					this.wasteTime(1000,2000);
 				}
+				this.kiosk.first = true;
 				this.msg("Done helping voters at kiosk, leaving (exiting)");
 			}
 			catch(InterruptedException e){
@@ -55,10 +56,10 @@ class Kiosk{
 			System.out.println("["+(System.currentTimeMillis()-time)+"] "+this.name+": "+m);
 		}
 		
-		private void wasteTime(int time) throws InterruptedException{
-			Random rand = new Random(System.currentTimeMillis());
-			TimeUnit.MILLISECONDS.sleep(rand.nextInt(time));
-		}
+		private void wasteTime(int min,int max) throws InterruptedException{
+		Random rand = new Random(System.currentTimeMillis());
+		TimeUnit.MILLISECONDS.sleep(rand.nextInt(max-min)+min);
+	}
 	}
 	
 	public Kiosk(int num, Tracker tracker){
@@ -158,7 +159,7 @@ class Kiosk{
 		}
 	}
 	
-	public synchronized int lineSize(){
+	public int lineSize(){
 		return waitingVoters.size();
 	}
 	
