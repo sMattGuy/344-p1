@@ -39,7 +39,7 @@ class ID_Check{
 		alertBusyHelper();
 	}
 	
-	public void startHelping(String name){
+	public boolean startHelping(String name){
 		if(!waitingVoters.isEmpty()){
 			//assist voter
 			alertVoters();
@@ -57,6 +57,7 @@ class ID_Check{
 					}
 				}
 			}
+			return false;
 		}
 		else if(this.tracker.lineVotersRemaining > 3 && waitingVoters.isEmpty()){
 			//no one to help, wait
@@ -73,7 +74,9 @@ class ID_Check{
 					}
 				}
 			}
+			return false;
 		}
+		return true;
 	}
 	
 	private synchronized void alertBusyHelper(){

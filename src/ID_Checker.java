@@ -20,7 +20,7 @@ class ID_Checker implements Runnable{
 		try{
 			while(this.tracker.lineVotersRemaining != 0){
 				this.msg("Ready to help next voter");
-				line.startHelping(this.name);
+				if(line.startHelping(this.name)){break;};
 				this.msg("Helping a voter");
 				this.wasteTime(500);
 			}

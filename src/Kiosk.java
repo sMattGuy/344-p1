@@ -1,5 +1,6 @@
+import java.util.Random;
 import java.util.Vector;
-
+import java.util.concurrent.TimeUnit;
 /*
 	plan:
 	each kiosk will run individually and have its own line
@@ -20,6 +21,7 @@ class Kiosk{
 	//kiosk thread
 	private Object helperConvey = new Object();
 	private boolean busy = false;
+	private boolean first = true;
 	private KioskHelper helper;
 	
 	//thread that is only for that kiosk
@@ -34,37 +36,43 @@ class Kiosk{
 		
 		public void run(){
 			try{
-				//when first created it will wait until the first voter comes, then it will loop
-				synchronized(helperConvey){
-					while(true){
-						try{
-							helperConvey.wait();
-							break;
-						}
-						catch(InterruptedException e){
-							continue;
-						}
-					}
-				}
-				while(kiosk.tracker.kioskVotersRemaining != 0){
+				while(kiosk.waitingVoters.size() != 0){
+					this.msg("Ready to help next voter to kiosk");
 					//loop helpers job until voters are all gone
-					
+					kiosk.startHelping(this.name);
+					this.msg("Waiting for voter to finish at kiosk");
+					this.wasteTime(500);
 				}
+				this.msg("Done helping voters at kiosk, leaving (exiting)");
 			}
 			catch(InterruptedException e){
 				System.out.println(e);
 			}
 		}
+		public static long time = System.currentTimeMillis();
+	
+		public void msg(String m) {
+			System.out.println("["+(System.currentTimeMillis()-time)+"] "+this.name+": "+m);
+		}
+		
+		private void wasteTime(int time) throws InterruptedException{
+			Random rand = new Random(System.currentTimeMillis());
+			TimeUnit.MILLISECONDS.sleep(rand.nextInt(time));
+		}
 	}
 	
-	public Kiosk(Tracker tracker){
+	public Kiosk(int num, Tracker tracker){
 		this.tracker = tracker;
-		helper = new KioskHelper("KioskHelper_"+kioskNum);
+		helper = new KioskHelper("KioskHelper_"+num,this);
 	}
 	
 	//essentially same code as in ID_Check, except that there will only ever be one helper per kiosk
 	//service methods for voter
 	public void enterLine(String name){
+		if(first){
+			first = false;
+			new Thread(helper).start();
+		}
 		//object that thread will wait on
 		Object convey = new Object();
 		synchronized(convey){
@@ -85,7 +93,9 @@ class Kiosk{
 	}
 	
 	public synchronized void exitLine(String name){
-		this.tracker.lineVotersRemaining--;
+		synchronized(this.tracker){
+			this.tracker.kioskVotersRemaining--;
+		}
 		alertBusyHelper();
 	}
 	
@@ -94,12 +104,11 @@ class Kiosk{
 			//assist voter
 			alertVoters();
 			//wait for voter to end
-			Object convey = new Object();
-			synchronized(convey){
-				busyHelpers.addElement(convey);
+			synchronized(helperConvey){
 				while(true){
 					try{
-						convey.wait();
+						busy = true;
+						helperConvey.wait();
 						break;
 					}
 					catch(InterruptedException e){
@@ -108,14 +117,13 @@ class Kiosk{
 				}
 			}
 		}
-		else if(waitingVoters.isEmpty()){
+		/*
+		else if(this.tracker.kioskVotersRemaining > 0 && waitingVoters.isEmpty()){
 			//no one to help, wait
-			Object convey = new Object();
-			synchronized(convey){
-				waitingHelpers.addElement(convey);
+			synchronized(helperConvey){
 				while(true){
 					try{
-						convey.wait();
+						helperConvey.wait();
 						break;
 					}
 					catch(InterruptedException e){
@@ -124,13 +132,13 @@ class Kiosk{
 				}
 			}
 		}
+		*/
 	}
-	
 	private synchronized void alertBusyHelper(){
-		if(!busyHelpers.isEmpty()){
-			synchronized(busyHelpers.elementAt(0)){
-				busyHelpers.elementAt(0).notify();
-				busyHelpers.removeElementAt(0);
+		if(busy){
+			synchronized(helperConvey){
+				helperConvey.notify();
+				busy = false;
 			}
 		}
 	}
@@ -143,15 +151,18 @@ class Kiosk{
 		}
 	}
 	private synchronized void alertHelpers(){
-		if(!waitingHelpers.isEmpty()){
-			synchronized(waitingHelpers.elementAt(0)){
-				waitingHelpers.elementAt(0).notify();
+		if(!busy){
+			synchronized(helperConvey){
+				helperConvey.notify();
 			}
-			waitingHelpers.removeElementAt(0);
 		}
 	}
 	
 	public synchronized int lineSize(){
 		return waitingVoters.size();
+	}
+	
+	public String toString(){
+		return "Remaining voters:"+this.tracker.kioskVotersRemaining+" Current Voter Line:"+this.waitingVoters.size()+" Current Busy Helpers:"+this.busy;
 	}
 }

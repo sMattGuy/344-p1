@@ -11,4 +11,7 @@ class Tracker{
 		this.kioskVotersRemaining = voters;
 		this.scannerVotersRemaining = voters;
 	}
+	public String toString(){
+		return "Line voters:"+this.lineVotersRemaining+", Kiosk voters:"+this.kioskVotersRemaining;
+	}
 }
