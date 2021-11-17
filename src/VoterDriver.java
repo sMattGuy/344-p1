@@ -1,15 +1,19 @@
 import java.util.Vector;
 public class VoterDriver{
 	public static void main(String args[]){
-		int numVoters = 10;
+		int numVoters = 20;
+		
 		int numIDHelpers = 3;
+		
 		int numKiosks = 3;
 		
+		int numScanMachines = 4;
+		int numScanHelpers = 2;
+		
 		Tracker tracker = new Tracker(numVoters);
-		
-		ID_Check id_check = new ID_Check(tracker);
-		
-		
+		//create id line
+		ID_Check id_check = new ID_Check(tracker, numIDHelpers);
+		//create kiosks
 		Vector<Kiosk> kiosks = new Vector<>();
 		for(int i=0;i<numKiosks;i++){
 			kiosks.addElement(new Kiosk(i,tracker));

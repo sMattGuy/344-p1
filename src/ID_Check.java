@@ -8,9 +8,12 @@ class ID_Check{
 	private Vector<Object> waitingHelpers = new Vector<>();
 	private Vector<Object> busyHelpers = new Vector<>();
 	
+	private int helperCount;
+	
 	//constructor for monitor
-	public ID_Check(Tracker tracker){
+	public ID_Check(Tracker tracker, int helperCount){
 		this.tracker = tracker;
+		this.helperCount = helperCount;
 	}
 	
 	//service methods for voter
@@ -59,7 +62,7 @@ class ID_Check{
 			}
 			return false;
 		}
-		else if(this.tracker.lineVotersRemaining > 3 && waitingVoters.isEmpty()){
+		else if(this.tracker.lineVotersRemaining > helperCount && waitingVoters.isEmpty()){
 			//no one to help, wait
 			Object convey = new Object();
 			synchronized(convey){

@@ -118,22 +118,6 @@ class Kiosk{
 				}
 			}
 		}
-		/*
-		else if(this.tracker.kioskVotersRemaining > 0 && waitingVoters.isEmpty()){
-			//no one to help, wait
-			synchronized(helperConvey){
-				while(true){
-					try{
-						helperConvey.wait();
-						break;
-					}
-					catch(InterruptedException e){
-						continue;
-					}
-				}
-			}
-		}
-		*/
 	}
 	private synchronized void alertBusyHelper(){
 		if(busy){

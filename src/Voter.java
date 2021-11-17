@@ -51,6 +51,9 @@ class Voter implements Runnable{
 			kiosks.elementAt(chosenKiosk).exitLine(this.name);		//exit and alert helper that theyre done
 			
 			this.msg("Moving on to Scan Machine");
+			this.wasteTime(2000,5000);
+			
+			
 			this.msg("Done, leaving the voting area (exiting)");
 		}
 		catch(InterruptedException e){
