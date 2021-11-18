@@ -3,11 +3,13 @@ import java.util.Vector;
 class ID_Check{
 	//this is set to the number of voters we will process, once it is 0, the helpers can exit
 	public Tracker tracker;
+	//voter line
 	private Vector<Object> waitingVoters = new Vector<>();
-	
+	//helpers that are doing nothing enter waiting helpers
 	private Vector<Object> waitingHelpers = new Vector<>();
+	//helpers busy with checking an id wait here
 	private Vector<Object> busyHelpers = new Vector<>();
-	
+	//keeps track of the number of helpers available
 	private int helperCount;
 	
 	//constructor for monitor
@@ -43,6 +45,7 @@ class ID_Check{
 	}
 	
 	public boolean startHelping(String name){
+		//if there are voters to help, do that first
 		if(!waitingVoters.isEmpty()){
 			//assist voter
 			alertVoters();
@@ -62,6 +65,7 @@ class ID_Check{
 			}
 			return false;
 		}
+		//if there are no voters, and there is still work to be done
 		else if(this.tracker.lineVotersRemaining > helperCount && waitingVoters.isEmpty()){
 			//no one to help, wait
 			Object convey = new Object();
@@ -79,9 +83,13 @@ class ID_Check{
 			}
 			return false;
 		}
+		//returns true if a thread can exit
 		return true;
 	}
-	
+	/*
+		a collection of synchronized variables to release threads from there queues
+		in a FCFS manner. each queue has its remove here
+	*/
 	private synchronized void alertBusyHelper(){
 		if(!busyHelpers.isEmpty()){
 			synchronized(busyHelpers.elementAt(0)){
@@ -106,7 +114,7 @@ class ID_Check{
 			waitingHelpers.removeElementAt(0);
 		}
 	}
-	
+	//toString for debugging purposes, not outputted in final version
 	public String toString(){
 		return "Remaining voters:"+this.tracker.lineVotersRemaining+" Current Voter Line:"+this.waitingVoters.size()+" Current Busy Helpers:"+this.busyHelpers.size()+" Current Waiting Helpers:"+waitingHelpers.size();
 	}

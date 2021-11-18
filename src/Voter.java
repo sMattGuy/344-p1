@@ -4,29 +4,33 @@ import java.util.concurrent.TimeUnit;
 
 class Voter implements Runnable{
 	//local variables
-	public Tracker tracker;
-	private String name;
-	private ID_Check line;
-	
+	public Tracker tracker;	//tabs on voters left per step
+	private String name;	//unique id for voter
+	//monitors for the voters
+	private ID_Check line;	
 	private Vector<Kiosk> kiosks;
-	
 	private ScanMachine scanner;
-	
+	//random and time to use for artificial delay
 	private Random rand = new Random(System.currentTimeMillis());
-	
 	private static long time = System.currentTimeMillis();
-	
+	//constructor
 	public Voter(String name, ID_Check line, Tracker tracker, Vector<Kiosk> kiosks, ScanMachine scanner){
 		this.name = name;
 		this.line = line;
 		this.tracker = tracker;
 		this.kiosks = kiosks;
 		this.scanner = scanner;
+		//auto start thread
 		new Thread(this).start();
 	}
 	
 	public void run(){
 		try{
+			/*
+				between every movement or big action a delay is applied
+				stripped down flow is
+					delay -> enter section -> perform action -> leave section
+			*/
 			//id section
 			this.wasteTime(1000,2000);				//delay when starting
 			this.msg("Entering the ID line");	
@@ -48,23 +52,24 @@ class Voter implements Runnable{
 			}
 			this.msg("Selected kiosk "+chosenKiosk);
 			kiosks.elementAt(chosenKiosk).enterLine(this.name);	//voter enters line for specific kiosk
-			this.wasteTime(2000,5000);										//time spent voting at kiosk
-			kiosks.elementAt(chosenKiosk).exitLine(this.name);		//exit and alert helper that theyre done
+			this.wasteTime(2000,5000);							//time spent voting at kiosk
+			kiosks.elementAt(chosenKiosk).exitLine(this.name);	//exit and alert helper that theyre done
+			
 			//scan machine section
 			this.msg("Moving on to Scan Machine");
 			this.wasteTime(2000,5000);
 			this.msg("entering scan line");
-			scanner.enterScanLine(this.name);
-			//decide if this voter needs help inserting paper into a machine
+			scanner.enterScanLine(this.name);	//enters area for scanner and waits for a group to form
 			this.wasteTime(1000,2000);
+			//decide if this voter needs help inserting paper into a machine
 			if(rand.nextFloat() < 0.75){
 				//voter needs help
 				this.msg("Needs help, getting a helper");
-				scanner.getHelp();
-				this.msg("Being helped");
-				this.wasteTime(3000,5000);
+				scanner.getHelp();				//enter a help queue
+				this.msg("Being helped");		//was notified
+				this.wasteTime(3000,5000);		//artificial delay
 				this.msg("done being helped");
-				scanner.gotHelp();
+				scanner.gotHelp();				//release helper that was helping voter
 			}
 			//voter exits the scan machine squad
 			scanner.leaveGroup(this.name);

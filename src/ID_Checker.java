@@ -18,11 +18,12 @@ class ID_Checker implements Runnable{
 	
 	public void run(){
 		try{
+			//loops until all voters are done, then leaves
 			while(this.tracker.lineVotersRemaining != 0){
 				this.msg("Ready to help next voter");
-				if(line.startHelping(this.name)){break;};
+				if(line.startHelping(this.name)){break;};	//if more helpers than voters, exit early
 				this.msg("Helping a voter");
-				this.wasteTime(1000,2000);
+				this.wasteTime(1000,2000);	//slight delay to add variance
 			}
 			this.msg("Done helping voters, leaving (exiting)");
 		}

@@ -25,6 +25,10 @@ class Kiosk{
 	private KioskHelper helper;
 	
 	//thread that is only for that kiosk
+	/*
+		since each kiosk only has one helper, it is better to just let it exist within its monitor
+		this makes it much easier to manage, since its restricted to only its monitor
+	*/
 	private class KioskHelper implements Runnable{
 		private String name;
 		private Kiosk kiosk;
@@ -44,7 +48,7 @@ class Kiosk{
 					this.wasteTime(1000,2000);
 				}
 				this.kiosk.first = true;
-				this.msg("Done helping voters at kiosk, leaving (exiting)");
+				this.msg("Done helping voters at kiosk, leaving (exiting until more voters arrive)");
 			}
 			catch(InterruptedException e){
 				System.out.println(e);
@@ -61,7 +65,7 @@ class Kiosk{
 			TimeUnit.MILLISECONDS.sleep(rand.nextInt(max-min)+min);
 		}
 	}
-	
+	//constructor
 	public Kiosk(int num, Tracker tracker){
 		this.tracker = tracker;
 		helper = new KioskHelper("KioskHelper_"+num,this);
@@ -92,14 +96,14 @@ class Kiosk{
 		}
 		//voter exits, sleeps, and calls exitLine
 	}
-	
+	//called when a voter is done, this updates the tracker and alerts the helper
 	public synchronized void exitLine(String name){
 		synchronized(this.tracker){
 			this.tracker.kioskVotersRemaining--;
 		}
 		alertBusyHelper();
 	}
-	
+	//called by helpers to kick things off
 	public void startHelping(String name){
 		if(!waitingVoters.isEmpty()){
 			//assist voter
@@ -119,6 +123,7 @@ class Kiosk{
 			}
 		}
 	}
+	//methods to release threads from their queues
 	private synchronized void alertBusyHelper(){
 		if(busy){
 			synchronized(helperConvey){
@@ -142,11 +147,11 @@ class Kiosk{
 			}
 		}
 	}
-	
+	//helper function so voters can make decisions on which line to enter
 	public int lineSize(){
 		return waitingVoters.size();
 	}
-	
+	//debug information, not shown in final version
 	public String toString(){
 		return "Remaining voters:"+this.tracker.kioskVotersRemaining+" Current Voter Line:"+this.waitingVoters.size()+" Current Busy Helpers:"+this.busy;
 	}

@@ -20,7 +20,7 @@ class ScanHelper implements Runnable{
 		try{
 			while(tracker.scannerVotersRemaining != 0){
 				this.msg("Ready to help next voters");
-				scanner.startHelping(this.name);
+				scanner.startHelping(this.name);	//all decisions are controlled in this one function
 				this.wasteTime(1000,2000);
 			}
 			this.msg("Done with helping voters scan, leaving (exiting)");
