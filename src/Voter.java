@@ -10,15 +10,18 @@ class Voter implements Runnable{
 	
 	private Vector<Kiosk> kiosks;
 	
-	/*
-	private ScanMachine scanMachine;
-	*/
+	private ScanMachine scanner;
 	
-	public Voter(String name, ID_Check line, Tracker tracker, Vector<Kiosk> kiosks){
+	private Random rand = new Random(System.currentTimeMillis());
+	
+	private static long time = System.currentTimeMillis();
+	
+	public Voter(String name, ID_Check line, Tracker tracker, Vector<Kiosk> kiosks, ScanMachine scanner){
 		this.name = name;
 		this.line = line;
 		this.tracker = tracker;
 		this.kiosks = kiosks;
+		this.scanner = scanner;
 		new Thread(this).start();
 	}
 	
@@ -28,7 +31,7 @@ class Voter implements Runnable{
 			this.wasteTime(1000,2000);				//delay when starting
 			this.msg("Entering the ID line");	
 			line.enterLine(this.name);				//enter line and wait
-			this.msg("Getting ID checked");		//id check notified voter, 
+			this.msg("Getting ID checked");			//id check notified voter, 
 			this.wasteTime(2000,5000);				//time taken to finish getting id checked
 			line.exitLine(this.name);				//exit line, update tracker and notify helper
 			
@@ -36,9 +39,7 @@ class Voter implements Runnable{
 			this.msg("Moving on to Kiosk");		
 			this.wasteTime(1000,3000);				//delay when entering kiosk
 			this.msg("Looking for shortest kiosk line");
-			/*
-				checks the status of every kiosk and picks the shortest line
-			*/
+			//checks the status of every kiosk and picks the shortest line
 			int chosenKiosk = 0;
 			for(int i=0;i<kiosks.size();i++){
 				if(kiosks.elementAt(i).lineSize() < kiosks.elementAt(chosenKiosk).lineSize()){
@@ -49,26 +50,38 @@ class Voter implements Runnable{
 			kiosks.elementAt(chosenKiosk).enterLine(this.name);	//voter enters line for specific kiosk
 			this.wasteTime(2000,5000);										//time spent voting at kiosk
 			kiosks.elementAt(chosenKiosk).exitLine(this.name);		//exit and alert helper that theyre done
-			
+			//scan machine section
 			this.msg("Moving on to Scan Machine");
 			this.wasteTime(2000,5000);
-			
-			
-			this.msg("Done, leaving the voting area (exiting)");
+			this.msg("entering scan line");
+			scanner.enterScanLine(this.name);
+			//decide if this voter needs help inserting paper into a machine
+			this.wasteTime(1000,2000);
+			if(rand.nextFloat() < 0.75){
+				//voter needs help
+				this.msg("Needs help, getting a helper");
+				scanner.getHelp();
+				this.msg("Being helped");
+				this.wasteTime(3000,5000);
+				this.msg("done being helped");
+				scanner.gotHelp();
+			}
+			//voter exits the scan machine squad
+			scanner.leaveGroup(this.name);
+			this.msg("Done, leaving the voting area (exiting, patriotically)");
 		}
-		catch(InterruptedException e){
+		catch(Exception e){
 			System.out.println(e);
 		}
 	}
 	
-	public static long time = System.currentTimeMillis();
+	
 	
 	public void msg(String m) {
 		System.out.println("["+(System.currentTimeMillis()-time)+"] "+this.name+": "+m);
 	}
 	
 	private void wasteTime(int min,int max) throws InterruptedException{
-		Random rand = new Random(System.currentTimeMillis());
 		TimeUnit.MILLISECONDS.sleep(rand.nextInt(max-min)+min);
 	}
 }

@@ -6,14 +6,13 @@ class Stalker implements Runnable{
 	private ID_Check line;
 	public Tracker tracker;
 	private Vector<Kiosk> kiosks;
-	/*
 	private Kiosk kiosk;
-	private ScanMachine scanMachine;
-	*/
-	public Stalker(ID_Check line,Tracker tracker, Vector<Kiosk> kiosks){
+	private ScanMachine scanner;
+	public Stalker(ID_Check line,Tracker tracker, Vector<Kiosk> kiosks, ScanMachine scanner){
 		this.line = line;
 		this.kiosks = kiosks;
 		this.tracker = tracker;
+		this.scanner = scanner;
 		new Thread(this).start();
 	}
 	
@@ -21,11 +20,14 @@ class Stalker implements Runnable{
 		try{
 			while(true){
 				//System.out.println(line);
+				/*
 				for(int i=0;i<3;i++){
 					System.out.println(kiosks.elementAt(i));
 				}
+				*/
+				System.out.println(scanner);
 				System.out.println(tracker);
-				wasteTime(1000);
+				wasteTime(3000);
 			}
 		}
 		catch(InterruptedException e){

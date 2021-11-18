@@ -57,9 +57,9 @@ class Kiosk{
 		}
 		
 		private void wasteTime(int min,int max) throws InterruptedException{
-		Random rand = new Random(System.currentTimeMillis());
-		TimeUnit.MILLISECONDS.sleep(rand.nextInt(max-min)+min);
-	}
+			Random rand = new Random(System.currentTimeMillis());
+			TimeUnit.MILLISECONDS.sleep(rand.nextInt(max-min)+min);
+		}
 	}
 	
 	public Kiosk(int num, Tracker tracker){
