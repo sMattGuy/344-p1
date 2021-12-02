@@ -1,0 +1,360 @@
+[14] ScanHelper_0: Ready to help next voters
+[12] Checker_0: Ready to help next voter
+[15] KioskHelper_1: Ready to help next voter to kiosk
+[16] ScanHelper_1: Ready to help next voters
+[13] Checker_1: Ready to help next voter
+[14] Checker_2: Ready to help next voter
+[15] KioskHelper_2: Ready to help next voter to kiosk
+[15] KioskHelper_0: Ready to help next voter to kiosk
+[1312] Voter_1: Entering the ID line
+[1312] Voter_0: Entering the ID line
+[1312] Checker_0: Helping a voter
+[1312] Checker_1: Helping a voter
+[1313] Voter_2: Entering the ID line
+[1313] Checker_2: Helping a voter
+[1313] Voter_3: Entering the ID line
+[1313] Voter_4: Entering the ID line
+[1313] Voter_6: Entering the ID line
+[1313] Voter_5: Entering the ID line
+[1313] Voter_7: Entering the ID line
+[1313] Voter_8: Entering the ID line
+[1313] Voter_9: Entering the ID line
+[1313] Voter_10: Entering the ID line
+[1313] Voter_11: Entering the ID line
+[1313] Voter_12: Entering the ID line
+[1313] Voter_13: Entering the ID line
+[1313] Voter_14: Entering the ID line
+[1313] Voter_15: Entering the ID line
+[1314] Voter_18: Entering the ID line
+[1314] Voter_16: Entering the ID line
+[1314] Voter_17: Entering the ID line
+[1314] Voter_19: Entering the ID line
+[2335] Checker_2: Ready to help next voter
+[2335] Voter_1: Getting ID checked
+[2709] Checker_0: Ready to help next voter
+[2709] Checker_1: Ready to help next voter
+[2709] Voter_0: Getting ID checked
+[2709] Voter_2: Getting ID checked
+[6157] Checker_2: Helping a voter
+[6157] Voter_1: Moving on to Kiosk
+[6523] Checker_0: Helping a voter
+[6523] Voter_2: Moving on to Kiosk
+[6523] Voter_0: Moving on to Kiosk
+[6523] Checker_1: Helping a voter
+[7276] Voter_1: Looking for shortest kiosk line
+[7276] Voter_1: Selected kiosk 0
+[7291] KioskHelper_0: Waiting for voter to finish at kiosk
+[7540] Checker_2: Ready to help next voter
+[7540] Voter_3: Getting ID checked
+[7642] Voter_2: Looking for shortest kiosk line
+[7642] Voter_0: Looking for shortest kiosk line
+[7642] Voter_0: Selected kiosk 1
+[7642] Voter_2: Selected kiosk 1
+[7657] KioskHelper_1: Waiting for voter to finish at kiosk
+[8491] KioskHelper_0: Ready to help next voter to kiosk
+[8516] Checker_1: Ready to help next voter
+[8516] Voter_4: Getting ID checked
+[8516] Checker_0: Ready to help next voter
+[8516] Voter_6: Getting ID checked
+[8905] KioskHelper_1: Ready to help next voter to kiosk
+[11351] Voter_3: Moving on to Kiosk
+[11351] Checker_2: Helping a voter
+[12233] Voter_1: Moving on to Scan Machine
+[12248] KioskHelper_0: Waiting for voter to finish at kiosk
+[12327] Voter_4: Moving on to Kiosk
+[12327] Checker_1: Helping a voter
+[12329] Voter_6: Moving on to Kiosk
+[12329] Checker_0: Helping a voter
+[12469] Voter_3: Looking for shortest kiosk line
+[12469] Voter_3: Selected kiosk 0
+[12645] Voter_0: Moving on to Scan Machine
+[12660] KioskHelper_1: Waiting for voter to finish at kiosk
+[12681] Checker_2: Ready to help next voter
+[12681] Voter_5: Getting ID checked
+[13371] KioskHelper_0: Ready to help next voter to kiosk
+[13445] Voter_4: Looking for shortest kiosk line
+[13445] Voter_4: Selected kiosk 0
+[13447] Voter_6: Looking for shortest kiosk line
+[13447] Voter_6: Selected kiosk 2
+[13462] KioskHelper_2: Waiting for voter to finish at kiosk
+[13505] Checker_0: Ready to help next voter
+[13505] Voter_7: Getting ID checked
+[13754] Checker_1: Ready to help next voter
+[13754] Voter_8: Getting ID checked
+[14650] KioskHelper_1: Ready to help next voter to kiosk
+[14674] KioskHelper_2: Ready to help next voter to kiosk
+[16396] Voter_1: entering scan line
+[16492] Voter_5: Moving on to Kiosk
+[16492] Checker_2: Helping a voter
+[16808] Voter_0: entering scan line
+[17112] Voter_3: Moving on to Scan Machine
+[17127] KioskHelper_0: Waiting for voter to finish at kiosk
+[17316] Voter_7: Moving on to Kiosk
+[17316] Checker_0: Helping a voter
+[17566] Voter_8: Moving on to Kiosk
+[17566] Checker_1: Helping a voter
+[17610] Voter_5: Looking for shortest kiosk line
+[17610] Voter_5: Selected kiosk 1
+[18390] Voter_2: Moving on to Scan Machine
+[18405] KioskHelper_1: Waiting for voter to finish at kiosk
+[18408] Checker_2: Ready to help next voter
+[18408] Voter_9: Getting ID checked
+[18416] Voter_6: Moving on to Scan Machine
+[18431] KioskHelper_2: Waiting for voter to finish at kiosk
+[18436] Voter_7: Looking for shortest kiosk line
+[18436] Voter_7: Selected kiosk 2
+[18509] KioskHelper_0: Ready to help next voter to kiosk
+[18590] Checker_1: Ready to help next voter
+[18590] Voter_10: Getting ID checked
+[18684] Voter_8: Looking for shortest kiosk line
+[18684] Voter_8: Selected kiosk 0
+[19154] Checker_0: Ready to help next voter
+[19154] Voter_11: Getting ID checked
+[19459] KioskHelper_1: Ready to help next voter to kiosk
+[20231] KioskHelper_2: Ready to help next voter to kiosk
+[21275] Voter_3: entering scan line
+[22220] Voter_9: Moving on to Kiosk
+[22220] Checker_2: Helping a voter
+[22250] Voter_4: Moving on to Scan Machine
+[22265] KioskHelper_0: Waiting for voter to finish at kiosk
+[22402] Voter_10: Moving on to Kiosk
+[22402] Checker_1: Helping a voter
+[22554] Voter_2: entering scan line
+[22579] Voter_6: entering scan line
+[22966] Voter_11: Moving on to Kiosk
+[22966] Checker_0: Helping a voter
+[23201] Voter_5: Moving on to Scan Machine
+[23216] KioskHelper_1: Waiting for voter to finish at kiosk
+[23340] Voter_9: Looking for shortest kiosk line
+[23340] Voter_9: Selected kiosk 1
+[23388] Checker_2: Ready to help next voter
+[23388] Voter_12: Getting ID checked
+[23520] Voter_10: Looking for shortest kiosk line
+[23520] Voter_10: Selected kiosk 2
+[23701] KioskHelper_0: Ready to help next voter to kiosk
+[23782] Checker_1: Ready to help next voter
+[23782] Voter_13: Getting ID checked
+[23893] ScanHelper_0: Ready to help next voters
+[23972] Voter_7: Moving on to Scan Machine
+[23987] KioskHelper_2: Waiting for voter to finish at kiosk
+[23979] ScanHelper_1: Ready to help next voters
+[24032] Checker_0: Ready to help next voter
+[24032] Voter_14: Getting ID checked
+[24084] Voter_11: Looking for shortest kiosk line
+[24084] Voter_11: Selected kiosk 0
+[24612] KioskHelper_1: Ready to help next voter to kiosk
+[25384] KioskHelper_2: Ready to help next voter to kiosk
+[25702] Voter_3: Needs help, getting a helper
+[25702] Voter_0: Needs help, getting a helper
+[25702] Voter_1: Needs help, getting a helper
+[25702] Voter_2: Needs help, getting a helper
+[25888] ScanHelper_0: Ready to help next voters
+[25888] Voter_3: Being helped
+[26413] Voter_4: entering scan line
+[26831] ScanHelper_1: Ready to help next voters
+[26831] Voter_0: Being helped
+[27200] Voter_12: Moving on to Kiosk
+[27200] Checker_2: Helping a voter
+[27365] Voter_5: entering scan line
+[27441] Voter_8: Moving on to Scan Machine
+[27456] KioskHelper_0: Waiting for voter to finish at kiosk
+[27593] Voter_13: Moving on to Kiosk
+[27593] Checker_1: Helping a voter
+[27844] Voter_14: Moving on to Kiosk
+[27844] Checker_0: Helping a voter
+[28135] Voter_7: entering scan line
+[28318] Voter_12: Looking for shortest kiosk line
+[28318] Voter_12: Selected kiosk 1
+[28353] Voter_9: Moving on to Scan Machine
+[28368] KioskHelper_1: Waiting for voter to finish at kiosk
+[28711] Voter_13: Looking for shortest kiosk line
+[28711] Voter_13: Selected kiosk 2
+[28811] Checker_1: Ready to help next voter
+[28811] Voter_15: Getting ID checked
+[28873] KioskHelper_0: Ready to help next voter to kiosk
+[28964] Voter_14: Looking for shortest kiosk line
+[28964] Voter_14: Selected kiosk 0
+[29018] Checker_2: Ready to help next voter
+[29018] Voter_18: Getting ID checked
+[29124] Voter_10: Moving on to Scan Machine
+[29139] KioskHelper_2: Waiting for voter to finish at kiosk
+[29357] Checker_0: Ready to help next voter
+[29357] Voter_16: Getting ID checked
+[30303] KioskHelper_1: Ready to help next voter to kiosk
+[30582] Voter_3: done being helped
+[30582] Voter_3: Done, leaving the voting area (exiting, patriotically)
+[31075] KioskHelper_2: Ready to help next voter to kiosk
+[31524] Voter_0: done being helped
+[31524] Voter_0: Done, leaving the voting area (exiting, patriotically)
+[31604] Voter_8: entering scan line
+[31979] ScanHelper_0: Ready to help next voters
+[31979] Voter_1: Being helped
+[32517] Voter_9: entering scan line
+[32613] Voter_11: Moving on to Scan Machine
+[32628] KioskHelper_0: Waiting for voter to finish at kiosk
+[32622] Voter_15: Moving on to Kiosk
+[32622] Checker_1: Helping a voter
+[32829] Voter_18: Moving on to Kiosk
+[32829] Checker_2: Helping a voter
+[33169] Voter_16: Moving on to Kiosk
+[33169] Checker_0: Helping a voter
+[33215] ScanHelper_1: Ready to help next voters
+[33215] Voter_2: Being helped
+[33288] Voter_10: entering scan line
+[33742] Voter_15: Looking for shortest kiosk line
+[33742] Voter_15: Selected kiosk 1
+[33949] Voter_18: Looking for shortest kiosk line
+[33949] Voter_18: Selected kiosk 2
+[34050] KioskHelper_0: Ready to help next voter to kiosk
+[34044] Voter_12: Moving on to Scan Machine
+[34059] KioskHelper_1: Waiting for voter to finish at kiosk
+[34176] Checker_1: Ready to help next voter
+[34176] Voter_17: Getting ID checked
+[34287] Voter_16: Looking for shortest kiosk line
+[34287] Voter_16: Selected kiosk 0
+[34396] Checker_0: Ready to help next voter
+[34396] Voter_19: Getting ID checked
+[34668] Checker_2: Ready to help next voter
+[34668] Checker_2: Done helping voters, leaving (exiting)
+[34815] Voter_13: Moving on to Scan Machine
+[34830] KioskHelper_2: Waiting for voter to finish at kiosk
+[35900] KioskHelper_1: Ready to help next voter to kiosk
+[36190] KioskHelper_2: Ready to help next voter to kiosk
+[36673] Voter_1: done being helped
+[36673] Voter_1: Done, leaving the voting area (exiting, patriotically)
+[36777] Voter_11: entering scan line
+[37691] ScanHelper_0: Ready to help next voters
+[37790] Voter_14: Moving on to Scan Machine
+[37805] KioskHelper_0: Waiting for voter to finish at kiosk
+[37908] Voter_2: done being helped
+[37908] Voter_2: Done, leaving the voting area (exiting, patriotically)
+[37988] Voter_17: Moving on to Kiosk
+[37988] Checker_1: Helping a voter
+[38207] Voter_19: Moving on to Kiosk
+[38207] Checker_0: Helping a voter
+[38207] Voter_12: entering scan line
+[38813] KioskHelper_0: Ready to help next voter to kiosk
+[38978] Voter_13: entering scan line
+[39087] ScanHelper_0: Ready to help next voters
+[39087] ScanHelper_1: Ready to help next voters
+[39106] Voter_17: Looking for shortest kiosk line
+[39106] Voter_17: Selected kiosk 0
+[39325] Voter_19: Looking for shortest kiosk line
+[39325] Voter_19: Selected kiosk 1
+[39617] Checker_1: Done helping voters, leaving (exiting)
+[39641] Voter_15: Moving on to Scan Machine
+[39656] KioskHelper_1: Waiting for voter to finish at kiosk
+[39930] Voter_18: Moving on to Scan Machine
+[39945] KioskHelper_2: Waiting for voter to finish at kiosk
+[40068] Checker_0: Done helping voters, leaving (exiting)
+[40696] ScanHelper_0: Ready to help next voters
+[40896] Voter_6: Needs help, getting a helper
+[40896] Voter_4: Needs help, getting a helper
+[40896] Voter_5: Needs help, getting a helper
+[40896] Voter_7: Needs help, getting a helper
+[41600] KioskHelper_1: Ready to help next voter to kiosk
+[41894] KioskHelper_2: Ready to help next voter to kiosk
+[41894] KioskHelper_2: Done helping voters at kiosk, leaving
+[41953] Voter_14: entering scan line
+[42568] KioskHelper_0: Waiting for voter to finish at kiosk
+[42553] Voter_16: Moving on to Scan Machine
+[42625] ScanHelper_1: Ready to help next voters
+[42625] ScanHelper_0: Ready to help next voters
+[42625] Voter_6: Being helped
+[42625] Voter_4: Being helped
+[43804] Voter_15: entering scan line
+[44002] KioskHelper_0: Ready to help next voter to kiosk
+[44093] Voter_18: entering scan line
+[45340] Voter_19: Moving on to Scan Machine
+[45355] KioskHelper_1: Waiting for voter to finish at kiosk
+[46716] Voter_16: entering scan line
+[46803] KioskHelper_1: Ready to help next voter to kiosk
+[46803] KioskHelper_1: Done helping voters at kiosk, leaving
+[47318] Voter_4: done being helped
+[47318] Voter_6: done being helped
+[47318] Voter_4: Done, leaving the voting area (exiting, patriotically)
+[47318] Voter_6: Done, leaving the voting area (exiting, patriotically)
+[47742] Voter_17: Moving on to Scan Machine
+[47757] KioskHelper_0: Waiting for voter to finish at kiosk
+[48355] ScanHelper_1: Ready to help next voters
+[48355] Voter_5: Being helped
+[48355] ScanHelper_0: Ready to help next voters
+[48355] Voter_7: Being helped
+[49502] KioskHelper_0: Done helping voters at kiosk, leaving
+[49503] Voter_19: entering scan line
+[51905] Voter_17: entering scan line
+[53048] Voter_5: done being helped
+[53048] Voter_5: Done, leaving the voting area (exiting, patriotically)
+[53048] Voter_7: done being helped
+[53048] Voter_7: Done, leaving the voting area (exiting, patriotically)
+[54670] ScanHelper_1: Ready to help next voters
+[54670] ScanHelper_0: Ready to help next voters
+[56168] ScanHelper_1: Ready to help next voters
+[56478] Voter_11: Needs help, getting a helper
+[56478] Voter_8: Needs help, getting a helper
+[56480] Voter_10: Needs help, getting a helper
+[56480] Voter_9: Needs help, getting a helper
+[57675] ScanHelper_0: Ready to help next voters
+[57675] Voter_11: Being helped
+[57675] ScanHelper_1: Ready to help next voters
+[57675] Voter_8: Being helped
+[62368] Voter_11: done being helped
+[62368] Voter_11: Done, leaving the voting area (exiting, patriotically)
+[62369] Voter_8: done being helped
+[62369] Voter_8: Done, leaving the voting area (exiting, patriotically)
+[63491] ScanHelper_1: Ready to help next voters
+[63491] Voter_10: Being helped
+[63865] ScanHelper_0: Ready to help next voters
+[63865] Voter_9: Being helped
+[68184] Voter_10: done being helped
+[68184] Voter_10: Done, leaving the voting area (exiting, patriotically)
+[68559] Voter_9: done being helped
+[68559] Voter_9: Done, leaving the voting area (exiting, patriotically)
+[70063] ScanHelper_1: Ready to help next voters
+[70080] ScanHelper_0: Ready to help next voters
+[71552] ScanHelper_1: Ready to help next voters
+[71873] Voter_12: Needs help, getting a helper
+[71873] Voter_15: Needs help, getting a helper
+[71873] Voter_13: Needs help, getting a helper
+[71873] Voter_14: Needs help, getting a helper
+[73010] ScanHelper_1: Ready to help next voters
+[73010] ScanHelper_0: Ready to help next voters
+[73010] Voter_12: Being helped
+[73010] Voter_15: Being helped
+[77702] Voter_12: done being helped
+[77702] Voter_12: Done, leaving the voting area (exiting, patriotically)
+[77702] Voter_15: done being helped
+[77702] Voter_15: Done, leaving the voting area (exiting, patriotically)
+[79414] ScanHelper_1: Ready to help next voters
+[79414] Voter_13: Being helped
+[79414] ScanHelper_0: Ready to help next voters
+[79414] Voter_14: Being helped
+[84106] Voter_13: done being helped
+[84106] Voter_13: Done, leaving the voting area (exiting, patriotically)
+[84107] Voter_14: done being helped
+[84107] Voter_14: Done, leaving the voting area (exiting, patriotically)
+[85649] ScanHelper_0: Ready to help next voters
+[86024] ScanHelper_1: Ready to help next voters
+[87036] ScanHelper_0: Ready to help next voters
+[87459] Voter_17: Needs help, getting a helper
+[87459] Voter_18: Needs help, getting a helper
+[87459] Voter_19: Needs help, getting a helper
+[87460] Voter_16: Needs help, getting a helper
+[89058] ScanHelper_1: Ready to help next voters
+[89059] Voter_17: Being helped
+[89059] ScanHelper_0: Ready to help next voters
+[89059] Voter_18: Being helped
+[93752] Voter_17: done being helped
+[93752] Voter_18: done being helped
+[93752] Voter_17: Done, leaving the voting area (exiting, patriotically)
+[93752] Voter_18: Done, leaving the voting area (exiting, patriotically)
+[95633] ScanHelper_1: Ready to help next voters
+[95633] Voter_19: Being helped
+[95634] ScanHelper_0: Ready to help next voters
+[95634] Voter_16: Being helped
+[100327] Voter_16: done being helped
+[100327] Voter_16: Done, leaving the voting area (exiting, patriotically)
+[100327] Voter_19: done being helped
+[100327] Voter_19: Done, leaving the voting area (exiting, patriotically)
+[101514] ScanHelper_1: Done with helping voters scan, leaving (exiting)
+[101514] ScanHelper_0: Done with helping voters scan, leaving (exiting)

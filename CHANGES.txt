@@ -1,0 +1,11 @@
+Thank you for this chance at a better grade, here is what has changed in this version
+
+KioskHelper is now in its own file and a public class, rather than private to each Kiosk.
+KioskHelper now doesnt terminate when no voters are in line, only when all voters have been helped
+
+Every other thread and monitor is the same as it was when originally uploaded
+
+I have attached a Git Diff in the file titled "Git Diff of Changes" which shows what code has been changed.
+
+Thank you for everything, if you have any questions you can contact me at
+matthew.flammia71@qmail.cuny.edu
