@@ -17,6 +17,7 @@ public class VoterDriver{
 		Vector<Kiosk> kiosks = new Vector<>();
 		for(int i=0;i<numKiosks;i++){
 			kiosks.addElement(new Kiosk(i,tracker));
+			new KioskHelper("KioskHelper_"+i,kiosks.elementAt(i),tracker);
 		}
 		//create ID helpers
 		for(int i=0;i<numIDHelpers;i++){
